@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+/* Yayın imzası: anahtar deponun DIŞINDA durur (../Egitim-Evi-App-imza/imza.properties).
+   Dosya yoksa yayın paketi imzasız çıkar; deneme (debug) paketi her zaman derlenir. */
+def imzaDosyasi = rootProject.file('../Egitim-Evi-App-imza/imza.properties')
+def imza = new Properties()
+if (imzaDosyasi.exists()) imzaDosyasi.withInputStream { imza.load(it) }
+
 android {
     namespace 'org.egitimevi.aile'
     compileSdk 36
@@ -12,9 +18,21 @@ android {
         versionName '1.0'
     }
 
+    signingConfigs {
+        yayin {
+            if (imzaDosyasi.exists()) {
+                storeFile file(imza['storeFile'])
+                storePassword imza['storePassword']
+                keyAlias imza['keyAlias']
+                keyPassword imza['keyPassword']
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            if (imzaDosyasi.exists()) signingConfig signingConfigs.yayin
         }
     }
 
