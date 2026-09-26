@@ -16,7 +16,10 @@ import java.nio.charset.StandardCharsets;
  * https ile gidilir; http yalnızca evdeki deneme sunucusu (yerel ağ) içindir.
  */
 public final class Api {
+    /** Çocuğun telefonunun (Aile) anahtarı: yalnız konum ve kullanım gönderir. */
     public static final String CIHAZ_BASLIGI = "X-Aile-Cihaz";
+    /** Uygulamanın anahtarı: yalnız bildirim yoklar ve servisçinin sefer konumunu gönderir. */
+    public static final String UYGULAMA_BASLIGI = "X-Cihaz";
 
     private Api() { }
 
@@ -43,15 +46,20 @@ public final class Api {
     }
 
     public static JSONObject get(String sunucu, String yol, String cihaz) throws IOException {
-        return istek(sunucu, yol, "GET", null, null, cihaz);
+        return istek(sunucu, yol, "GET", null, null, CIHAZ_BASLIGI, cihaz);
     }
 
     public static JSONObject post(String sunucu, String yol, JSONObject govde, String oturum, String cihaz) throws IOException {
-        return istek(sunucu, yol, "POST", govde, oturum, cihaz);
+        return istek(sunucu, yol, "POST", govde, oturum, CIHAZ_BASLIGI, cihaz);
+    }
+
+    /** Uygulama anahtarıyla (X-Cihaz) istek: bildirim yoklama, sefer konumu. */
+    public static JSONObject uygulama(String sunucu, String yol, JSONObject govde, String anahtar) throws IOException {
+        return istek(sunucu, yol, govde == null ? "GET" : "POST", govde, null, UYGULAMA_BASLIGI, anahtar);
     }
 
     private static JSONObject istek(String sunucu, String yol, String yontem, JSONObject govde,
-                                    String oturum, String cihaz) throws IOException {
+                                    String oturum, String baslik, String cihaz) throws IOException {
         String sorun = adresSorunu(sunucu);
         if (sorun != null) throw new Hata(0, sorun);
         HttpURLConnection b = (HttpURLConnection) new URL(sunucu.replaceAll("/+$", "") + yol).openConnection();
@@ -60,7 +68,7 @@ public final class Api {
         b.setReadTimeout(20000);
         b.setRequestProperty("Accept", "application/json");
         if (oturum != null && !oturum.isEmpty()) b.setRequestProperty("Authorization", "Bearer " + oturum);
-        if (cihaz != null && !cihaz.isEmpty()) b.setRequestProperty(CIHAZ_BASLIGI, cihaz);
+        if (cihaz != null && !cihaz.isEmpty()) b.setRequestProperty(baslik, cihaz);
         if (govde != null) {
             byte[] veri = govde.toString().getBytes(StandardCharsets.UTF_8);
             b.setDoOutput(true);

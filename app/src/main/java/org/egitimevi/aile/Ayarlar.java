@@ -33,6 +33,9 @@ public final class Ayarlar {
     public static long sonKonum(Context c) { return sp(c).getLong("sonKonum", 0); }
     public static String sonHata(Context c) { return sp(c).getString("sonHata", ""); }
 
+    /** Yalnızca deneme paketinde sorulan sunucu adresi (yayın paketi egitimevi.org). */
+    public static void sunucuYaz(Context c, String sunucu) { sp(c).edit().putString("sunucu", sunucu).apply(); }
+
     public static void baglan(Context c, String sunucu, String anahtar, String ogrenci) {
         sp(c).edit().putString("sunucu", sunucu).putString("cihaz", anahtar).putString("ogrenci", ogrenci).apply();
     }

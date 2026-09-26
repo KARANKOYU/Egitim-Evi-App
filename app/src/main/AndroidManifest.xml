@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Eğitim Evi Aile: öğrencinin telefonunda çalışır. Velinin seçtiği aralıkla
-     telefonun konumunu ve uygulama kullanım sürelerini Eğitim Evi'ne gönderir;
-     veli bunları sitede görür. Uygulama kapatma ya da kilitleme yoktur. -->
+<!-- Eğitim Evi telefon uygulaması. Ana ekran site (WebView): müdür, öğretmen, veli,
+     öğrenci ve servisçi girer. Yerel kısımlar: bildirim yoklaması, servisçinin sefer
+     konumu ve çocuğun telefonu (Aile: konum ve kullanım süresi velisine; uygulama
+     kapatma ya da kilitleme yoktur). -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -40,12 +41,29 @@
         <activity
             android:name=".AnaEkran"
             android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".AileEkrani"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <service
+            android:name=".SeferServisi"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <service
+            android:name=".BildirimIsi"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
             android:name=".IzlemeServisi"

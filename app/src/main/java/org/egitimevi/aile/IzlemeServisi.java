@@ -215,7 +215,7 @@ public class IzlemeServisi extends Service implements LocationListener {
             k.setDescription("Konum ve ekran süresi velinle paylaşılırken görünür.");
             nm.createNotificationChannel(k);
         }
-        PendingIntent ac = PendingIntent.getActivity(this, 0, new Intent(this, AnaEkran.class), PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent ac = PendingIntent.getActivity(this, 0, new Intent(this, AileEkrani.class), PendingIntent.FLAG_IMMUTABLE);
         Notification.Builder b = new Notification.Builder(this, KANAL);
         return b.setSmallIcon(R.drawable.bildirim_simge)
             .setContentTitle("Eğitim Evi Aile")
