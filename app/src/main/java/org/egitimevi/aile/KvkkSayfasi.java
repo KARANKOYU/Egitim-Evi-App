@@ -20,7 +20,7 @@ public class KvkkSayfasi extends Sayfa {
     @Override public String baslik() { return "Aydınlatma metni"; }
     @Override protected boolean cubuksuz() { return true; }
 
-    static void metniAc(AnaEkran e) { KayitSayfasi.siteAc(e, "/kvkk.html"); }
+    static void metniAc(AnaEkran e) { KayitSayfasi.siteAc(e, "/kvkk/kvkk.html"); }
 
     @Override
     protected View olustur() {

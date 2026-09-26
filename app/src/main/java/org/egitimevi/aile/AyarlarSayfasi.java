@@ -90,7 +90,7 @@ public class AyarlarSayfasi extends Sayfa {
         site.addView(Arayuz.ayirici(e));
         site.addView(satir(R.drawable.ik_belge, "Aydınlatma metni", null, v -> KvkkSayfasi.metniAc(e)));
         site.addView(Arayuz.ayirici(e));
-        site.addView(satir(R.drawable.ik_soru, "Sık sorulan sorular", null, v -> KayitSayfasi.siteAc(e, "/sss")));
+        site.addView(satir(R.drawable.ik_soru, "Sık sorulan sorular", null, v -> KayitSayfasi.siteAc(e, "/sss/sss.html")));
         Arayuz.ekle(g, site, 8);
 
         TextView cik = Arayuz.dugme(e, "Çıkış yap", Arayuz.Dugme.TEHLIKE);
