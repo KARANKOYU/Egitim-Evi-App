@@ -26,7 +26,10 @@ public final class Api {
     /** Sunucunun verdiği hata ya da bağlantı sorunu. */
     public static final class Hata extends IOException {
         public final int durum;
-        public Hata(int durum, String mesaj) { super(mesaj); this.durum = durum; }
+        /** Sunucunun hata cevabının tamamı (alan, kvkkGerek, sifreDegismeli, rolsuz...). */
+        public final JSONObject govde;
+        public Hata(int durum, String mesaj) { this(durum, mesaj, new JSONObject()); }
+        public Hata(int durum, String mesaj, JSONObject govde) { super(mesaj); this.durum = durum; this.govde = govde; }
     }
 
     /** Adres geçerli mi: https, ya da yerel ağdaki bir adreste http. */
@@ -51,6 +54,11 @@ public final class Api {
 
     public static JSONObject post(String sunucu, String yol, JSONObject govde, String oturum, String cihaz) throws IOException {
         return istek(sunucu, yol, "POST", govde, oturum, CIHAZ_BASLIGI, cihaz);
+    }
+
+    /** Oturumla (Bearer) istek: uygulamanın bütün ekranları. govde null ise GET. */
+    public static JSONObject oturumla(String sunucu, String yol, String yontem, JSONObject govde, String oturum) throws IOException {
+        return istek(sunucu, yol, yontem, govde, oturum, CIHAZ_BASLIGI, null);
     }
 
     /** Uygulama anahtarıyla (X-Cihaz) istek: bildirim yoklama, sefer konumu. */
@@ -84,7 +92,7 @@ public final class Api {
         try { j = metin.isEmpty() ? new JSONObject() : new JSONObject(metin); } catch (JSONException e) { j = new JSONObject(); }
         if (durum >= 400) {
             String m = j.optString("error", "");
-            throw new Hata(durum, m.isEmpty() ? "Sunucu hatası (" + durum + ")" : m);
+            throw new Hata(durum, m.isEmpty() ? "Sunucu hatası (" + durum + ")" : m, j);
         }
         return j;
     }

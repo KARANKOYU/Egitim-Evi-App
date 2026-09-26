@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sitenin "harita" simgesi (02-ikonlar.js); araclar/simgeleri-uret.js üretir, elle değiştirme -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M9 4v14M15 6v14"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

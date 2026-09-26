@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sitenin "hedef" simgesi (02-ikonlar.js); araclar/simgeleri-uret.js üretir, elle değiştirme -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M4.5,12a7.5,7.5 0 1,0 15,0a7.5,7.5 0 1,0 -15,0"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M9.8,12a2.2,2.2 0 1,0 4.4,0a2.2,2.2 0 1,0 -4.4,0"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M12 2v3M12 19v3M2 12h3M19 12h3"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

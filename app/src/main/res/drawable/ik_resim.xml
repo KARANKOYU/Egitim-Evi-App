@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sitenin "resim" simgesi (02-ikonlar.js); araclar/simgeleri-uret.js üretir, elle değiştirme -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M5,4.5h14a2,2 0 0,1 2,2v11a2,2 0 0,1 -2,2h-14a2,2 0 0,1 -2,-2v-11a2,2 0 0,1 2,-2z"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M7.2,10a1.8,1.8 0 1,0 3.6,0a1.8,1.8 0 1,0 -3.6,0"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="m21 16-5-5-8.5 8.5"
+        android:strokeColor="#FF000000" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

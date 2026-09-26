@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sitenin renk değişkenleri (Eğitim Evi deposu: public/css/parcalar/00-temel.css), açık tema.
+     Koyu tema: values-night/renkler.xml. Adlar sitedekiyle aynı. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
+    <color name="ana">#D62839</color>
+    <color name="ana_koyu">#A51D2C</color>
+    <color name="ana_acik">#FDECEE</color>
+    <color name="ana_cizgi">#F6C3C9</color>
+    <color name="ustune_yazi">#FFFFFF</color>
+    <color name="ikinci">#0FA3B1</color>
+    <color name="ikinci_acik">#E2F6F8</color>
+    <color name="vurgu">#F7B32B</color>
+    <color name="vurgu_acik">#FFF4D9</color>
+    <color name="zemin">#FFF9F5</color>
+    <color name="kart">#FFFFFF</color>
+    <color name="kart_ust">#FFFFFF</color>
+    <color name="yazi">#1D1F24</color>
+    <color name="soluk">#6B6566</color>
+    <color name="cizgi">#F0E6E1</color>
+    <color name="cizgi_koyu">#E2D5CF</color>
+    <color name="yesil">#15803D</color>
+    <color name="yesil_zemin">#DCFCE7</color>
+    <color name="yesil_yazi">#14532D</color>
+    <color name="kirmizi">#DC2626</color>
+    <color name="kirmizi_zemin">#FEE2E2</color>
+    <color name="kirmizi_yazi">#991B1B</color>
+    <color name="turuncu">#C2410C</color>
+    <color name="turuncu_zemin">#FFEDD5</color>
+    <color name="turuncu_yazi">#9A3412</color>
+    <color name="mavi">#1D4ED8</color>
+    <color name="mavi_zemin">#DBEAFE</color>
+    <color name="mavi_yazi">#1E40AF</color>
+    <color name="gri_zemin">#ECEAF3</color>
+    <color name="bordo">#7F1D1D</color>
+    <color name="harita_okul">#1D4ED8</color>
+    <color name="harita_ev">#15803D</color>
+    <color name="harita_servis">#D62839</color>
+    <color name="harita_ben">#0D9488</color>
+    <color name="perde">#731F1B2E</color>
+</resources>

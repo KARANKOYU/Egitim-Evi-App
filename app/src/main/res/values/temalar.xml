@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Açık tema; koyusu values-night/temalar.xml. Çubuklar zemin renginde, simgeleri koyu. -->
+    <style name="Tema" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/ana</item>
+        <item name="android:colorPrimaryDark">@color/zemin</item>
+        <item name="android:colorAccent">@color/ana</item>
+        <item name="android:colorControlActivated">@color/ana</item>
+        <item name="android:colorControlHighlight">@color/ana_acik</item>
+        <item name="android:windowBackground">@color/zemin</item>
+        <item name="android:statusBarColor">@color/zemin</item>
+        <item name="android:navigationBarColor">@color/kart</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColorPrimary">@color/yazi</item>
+        <item name="android:textColorSecondary">@color/soluk</item>
+    </style>
+</resources>
