@@ -47,7 +47,7 @@ public class IzlemeServisi extends Service implements LocationListener {
     public static void baslat(Context c) {
         if (!Ayarlar.bagli(c)) return;
         Intent i = new Intent(c, IzlemeServisi.class);
-        if (Build.VERSION.SDK_INT >= 26) c.startForegroundService(i); else c.startService(i);
+        c.startForegroundService(i);
     }
 
     public static void durdur(Context c) { c.stopService(new Intent(c, IzlemeServisi.class)); }
@@ -210,13 +210,13 @@ public class IzlemeServisi extends Service implements LocationListener {
 
     private Notification bildirim() {
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= 26 && nm.getNotificationChannel(KANAL) == null) {
+        if (nm.getNotificationChannel(KANAL) == null) {
             NotificationChannel k = new NotificationChannel(KANAL, "Aile paylaşımı", NotificationManager.IMPORTANCE_LOW);
             k.setDescription("Konum ve ekran süresi velinle paylaşılırken görünür.");
             nm.createNotificationChannel(k);
         }
         PendingIntent ac = PendingIntent.getActivity(this, 0, new Intent(this, AnaEkran.class), PendingIntent.FLAG_IMMUTABLE);
-        Notification.Builder b = Build.VERSION.SDK_INT >= 26 ? new Notification.Builder(this, KANAL) : new Notification.Builder(this);
+        Notification.Builder b = new Notification.Builder(this, KANAL);
         return b.setSmallIcon(R.drawable.bildirim_simge)
             .setContentTitle("Eğitim Evi Aile")
             .setContentText("Konumun ve ekran süren velinle paylaşılıyor.")

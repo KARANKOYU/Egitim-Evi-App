@@ -32,6 +32,7 @@ import java.util.Set;
 public final class Kullanim {
     private Kullanim() { }
 
+    @SuppressWarnings("deprecation")
     public static boolean izinVar(Context c) {
         AppOpsManager ops = (AppOpsManager) c.getSystemService(Context.APP_OPS_SERVICE);
         int m = Build.VERSION.SDK_INT >= 29

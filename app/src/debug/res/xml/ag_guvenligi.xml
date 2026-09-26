@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Yalnızca deneme (debug) paketi: evdeki deneme sunucusuna http ile bağlanılabilsin.
+     Api.java yine de http'ye yalnızca yerel ağ adreslerinde (localhost, 10.x,
+     172.16-31.x, 192.168.x) izin verir; internetteki adreslere https ile gidilir. -->
+<network-security-config xmlns:tools="http://schemas.android.com/tools">
+    <base-config cleartextTrafficPermitted="true" tools:ignore="InsecureBaseConfiguration" />
+</network-security-config>

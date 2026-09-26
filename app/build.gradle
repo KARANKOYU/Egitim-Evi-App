@@ -14,8 +14,8 @@ android {
         applicationId 'org.egitimevi.aile'
         minSdk 26
         targetSdk 36
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '1.0.2'
     }
 
     signingConfigs {
@@ -34,6 +34,11 @@ android {
             minifyEnabled false
             if (imzaDosyasi.exists()) signingConfig signingConfigs.yayin
         }
+    }
+
+    /* Uygulama yalnızca Türkçe: metinlerin kaynak dosyasına taşınması uyarısı kapalı. */
+    lint {
+        disable 'SetTextI18n'
     }
 
     compileOptions {

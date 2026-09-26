@@ -51,6 +51,8 @@ public class AnaEkran extends Activity {
     private LinearLayout govde;
     private String sorunNo = "";
 
+    /* Eski sürümlerin çubuk ve kenar boşluğu arayüzleri sürüm denetimiyle kullanılıyor. */
+    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
@@ -63,8 +65,11 @@ public class AnaEkran extends Activity {
         kaydir.addView(govde);
         setContentView(kaydir);
         /* Açık zemin: durum çubuğu simgeleri koyu olsun; içerik çubukların altına girmesin. */
-        getWindow().setStatusBarColor(Color.parseColor("#FFF9F5"));
-        getWindow().setNavigationBarColor(Color.parseColor("#FFF9F5"));
+        if (Build.VERSION.SDK_INT < 35) {
+            /* Android 15'ten itibaren çubuklar saydamdır; zemin rengi arkadan görünür. */
+            getWindow().setStatusBarColor(Color.parseColor("#FFF9F5"));
+            getWindow().setNavigationBarColor(Color.parseColor("#FFF9F5"));
+        }
         if (Build.VERSION.SDK_INT >= 30) {
             int a = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
             getWindow().getInsetsController().setSystemBarsAppearance(a, a);
@@ -218,15 +223,19 @@ public class AnaEkran extends Activity {
             izinSatiri("Bildirimler", checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED,
                 "Bildirim iznini ver", v -> requestPermissions(new String[] { Manifest.permission.POST_NOTIFICATIONS }, IZIN_BILDIRIM));
         }
+        /* Pil kısıtlaması: doğrudan "muaf tut" penceresi Play Store kuralına takılır;
+           uygulamanın ayar sayfası açılır, öğrenci Pil > Kısıtlamasız'ı seçer. */
         PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-        izinSatiri("Arka planda çalışma (pil kısıtlaması yok)", pm.isIgnoringBatteryOptimizations(getPackageName()),
-            "Arka planda çalışmasına izin ver", v -> {
-                Intent i = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName()));
+        boolean pilSerbest = pm.isIgnoringBatteryOptimizations(getPackageName());
+        izinSatiri("Arka planda çalışma (pil kısıtlaması yok)", pilSerbest,
+            "Pil ayarını aç", v -> {
+                Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
                 try { startActivity(i); } catch (Exception e) { startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)); }
             });
+        if (!pilSerbest) yazi("Açılan sayfada Pil (Uygulama pil kullanımı) > Kısıtlamasız'ı seç.", SOLUK, 13);
 
         altBaslik("Durum");
-        SimpleDateFormat s = new SimpleDateFormat("d MMMM HH:mm", new Locale("tr", "TR"));
+        SimpleDateFormat s = new SimpleDateFormat("d MMMM HH:mm", Locale.forLanguageTag("tr-TR"));
         long sk = Ayarlar.sonKonum(this), sg = Ayarlar.sonGonderim(this);
         yazi("Son konum: " + (sk == 0 ? "henüz yok" : s.format(new Date(sk))), YAZI, 15);
         yazi("Son gönderim: " + (sg == 0 ? "henüz yok" : s.format(new Date(sg))), YAZI, 15);

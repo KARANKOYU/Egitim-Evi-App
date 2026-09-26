@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Yayındaki sunucu HTTPS'tir. Evdeki deneme sunucusu (ör. http://192.168.1.20:3000)
-     için şifresiz bağlantı açık bırakıldı; ama Api.java yalnızca yerel ağ
-     adreslerinde (localhost, 10.x, 172.16-31.x, 192.168.x) http'ye izin verir,
-     internetteki adreslere yalnızca https ile gidilir. -->
+<!-- Yayın paketi yalnızca HTTPS ile bağlanır. Evdeki deneme sunucusu için
+     (ör. http://192.168.1.20:3000) şifresiz bağlantı yalnızca deneme (debug)
+     paketinde açıktır: app/src/debug/res/xml/ag_guvenligi.xml. -->
 <network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
+    <base-config cleartextTrafficPermitted="false" />
 </network-security-config>

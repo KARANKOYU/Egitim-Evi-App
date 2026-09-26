@@ -28,10 +28,11 @@ Veli ya da öğrenci bağlantıyı kaldırınca anahtar geçersiz olur ve uygula
 | `IzlemeServisi.java` | Ön plan servisi: ağ türüne göre konum aralığı, gönderim, ayar tazeleme |
 | `Kullanim.java` | Android kullanım istatistiklerinden günlük uygulama süreleri |
 | `Kuyruk.java` | Gönderilmeyi bekleyen konumlar (en fazla 5000; 7 günden eskisi atılır) |
-| `Api.java` | Sunucuyla JSON; internette yalnızca https, http yalnızca yerel ağdaki deneme sunucusu |
+| `Api.java` | Sunucuyla JSON; yalnızca https (http yalnızca deneme paketinde, yerel ağdaki sunucuya) |
 | `BaslatmaAlici.java` | Telefon açılınca servisi yeniden başlatır |
 
-İstenen izinler: konum (arka planda da), kullanım erişimi, bildirim, pil kısıtlamasından muafiyet.
+İstenen izinler: konum (arka planda da), kullanım erişimi, bildirim; pil ayarında "Kısıtlamasız"
+seçilmesi istenir. Uygulamanın verisi buluta yedeklenmez, yeni telefona taşınmaz (yeniden bağlanılır).
 Dış kütüphane yoktur; yalnızca Android'in kendi arayüzleri kullanılır. En düşük Android 8.0.
 Sunucu tarafı Eğitim Evi deposunda `sunucu/bolumler/aile.js`.
 
