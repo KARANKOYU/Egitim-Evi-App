@@ -95,7 +95,7 @@ public class KodSayfasi extends Sayfa {
         kod.hataGoster(null);
         Arayuz.mesgul(dogrula, true);
         JSONObject g = new JSONObject();
-        try { g.put("challengeId", kimlik).put("code", k); } catch (Exception x) { return; }
+        try { g.put("challengeId", kimlik).put("code", k).put("uygulama", true); } catch (Exception x) { return; }
         Ag.post(e, "/api/login/dogrula", g, j -> {
             ana.removeCallbacksAndMessages(null);
             e.oturumAc(j);

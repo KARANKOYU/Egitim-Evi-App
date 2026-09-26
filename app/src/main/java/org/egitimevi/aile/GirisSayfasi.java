@@ -199,7 +199,7 @@ public class GirisSayfasi extends Sayfa {
         if (sifre.hamDeger().isEmpty()) { sifre.hataGoster("Şifreni yaz."); return; }
         JSONObject g = new JSONObject();
         try {
-            g.put("kimlik", kimlik.deger()).put("password", sifre.hamDeger());
+            g.put("kimlik", kimlik.deger()).put("password", sifre.hamDeger()).put("uygulama", true);
             if (!okulKisaAd.isEmpty()) g.put("okul", okulKisaAd);
             if (soru.gorunur()) soru.ekle(g);
         } catch (Exception x) { return; }
