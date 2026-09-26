@@ -15,8 +15,11 @@ import android.os.Looper;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -59,6 +62,26 @@ public class AnaEkran extends Activity {
         govde.setPadding(p, dp(28), p, dp(40));
         kaydir.addView(govde);
         setContentView(kaydir);
+        /* Açık zemin: durum çubuğu simgeleri koyu olsun; içerik çubukların altına girmesin. */
+        getWindow().setStatusBarColor(Color.parseColor("#FFF9F5"));
+        getWindow().setNavigationBarColor(Color.parseColor("#FFF9F5"));
+        if (Build.VERSION.SDK_INT >= 30) {
+            int a = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
+            getWindow().getInsetsController().setSystemBarsAppearance(a, a);
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        kaydir.setOnApplyWindowInsetsListener((v, ic) -> {
+            int ust, alt;
+            if (Build.VERSION.SDK_INT >= 30) {
+                android.graphics.Insets s = ic.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
+                ust = s.top; alt = s.bottom;
+            } else {
+                ust = ic.getSystemWindowInsetTop(); alt = ic.getSystemWindowInsetBottom();
+            }
+            govde.setPadding(p, ust + dp(16), p, alt + dp(28));
+            return ic;
+        });
     }
 
     @Override
@@ -283,10 +306,11 @@ public class AnaEkran extends Activity {
     private EditText alan(String etiket, String deger, int tur) {
         yazi(etiket, SOLUK, 13);
         EditText e = new EditText(this);
+        e.setSingleLine(true);   // önce: tek satır ayarı şifre gizlemeyi silmesin
         e.setInputType(tur);
+        if ((tur & InputType.TYPE_TEXT_VARIATION_PASSWORD) != 0) e.setTransformationMethod(PasswordTransformationMethod.getInstance());
         e.setText(deger);
         e.setTextColor(YAZI);
-        e.setSingleLine(true);
         govde.addView(e, bosluk(0));
         return e;
     }
