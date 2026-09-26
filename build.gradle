@@ -1,0 +1,11 @@
+// Eğitim Evi Aile: çocuğun telefonunda çalışan küçük uygulama.
+// Dış kütüphane yok; yalnızca Android'in kendi arayüzleri kullanılır.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+    }
+}
