@@ -1,11 +1,38 @@
+# Derleme çıktıları ve Android Studio dosyaları
 .gradle/
 build/
 app/build/
-local.properties
+captures/
+.externalNativeBuild/
+.cxx/
 .idea/
 *.iml
-captures/
+.vscode/
+
+# Bilgisayara özel SDK yolu
+local.properties
+
+# Paketler: sürümler GitHub Releases'e yüklenir, depoya girmez
 *.apk
 *.aab
+
+# İmza anahtarı ve şifreleri: depo DIŞINDA durur (../Egitim-Evi-App-imza/).
+# Yanlışlıkla buraya kopyalansa bile depoya giremez.
+Egitim-Evi-App-imza/
+imza.properties
 *.jks
 *.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+
+# Günlükler ve geçici dosyalar
+*.log
+*.tmp
+*.bak
+Thumbs.db
+desktop.ini
+.DS_Store
