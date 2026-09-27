@@ -211,7 +211,11 @@ public final class Arayuz {
         EditText kutu = new EditText(c);
         kutu.setSingleLine((tur & InputType.TYPE_TEXT_FLAG_MULTI_LINE) == 0);
         kutu.setInputType(tur);
-        if ((tur & InputType.TYPE_TEXT_VARIATION_PASSWORD) != 0) kutu.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        /* Yalnız şifre kutusu gizlenir. Tür bir bit alanıdır: görünür parola (0x90, kod kutuları)
+           da 0x80 bitini taşır, "& != 0" onu da noktalarla gizliyordu. */
+        if ((tur & InputType.TYPE_MASK_VARIATION) == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+            kutu.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
         kutu.setHint(ipucu);
         kutu.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         kutu.setTextColor(Tema.renk(c, R.color.yazi));

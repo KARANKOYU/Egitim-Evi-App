@@ -63,11 +63,12 @@ public class EkleSayfasi extends Sayfa {
             Arayuz.ekle(g, Arayuz.yazi(e, "Kodu çocuğunun okulundan alırsın (giriş bilgisi kâğıdında ya da öğrencinin Ayarlar'ında). "
                 + "Birden çok çocuğun varsa her birini ayrı ekle.", 15, R.color.soluk), 8);
             LinearLayout kart = Arayuz.kart(e);
-            kod = Arayuz.alan(e, "Veli kodu (15 karakter)", "Ab3#k Qx9+m Pt7?z",
+            kod = Arayuz.alan(e, "Veli kodu (16 karakter)", KisiKodu.ORNEK,
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
             kod.kutu.setTypeface(Tema.KOD);
+            KisiKodu.kutuyaBagla(kod.kutu);
             kart.addView(kod.kok);
-            Arayuz.ekle(kart, Arayuz.soluk(e, "Büyük/küçük harfe dikkat et; boşluklar önemli değil."), 4);
+            Arayuz.ekle(kart, Arayuz.soluk(e, "Büyük/küçük harfe dikkat et; tireler kendiliğinden gelir."), 4);
             ekle = Arayuz.dugme(e, "Çocuğumu ekle", Arayuz.Dugme.BIRINCIL);
             ekle.setOnClickListener(v -> ekle());
             Arayuz.ekle(kart, ekle, 16);
@@ -78,7 +79,7 @@ public class EkleSayfasi extends Sayfa {
         private void ekle() {
             String k = KisiKodu.sade(kod.hamDeger());
             kod.hataGoster(null);
-            if (k.length() != 15) { kod.hataGoster("Veli kodu 15 karakterdir."); return; }
+            if (k.length() != KisiKodu.UZUNLUK) { kod.hataGoster("Veli kodu 16 karakterdir."); return; }
             Arayuz.mesgul(ekle, true);
             JSONObject g = new JSONObject();
             try { g.put("code", k); } catch (Exception x) { return; }
