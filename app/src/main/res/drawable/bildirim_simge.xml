@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Bildirim çubuğu simgesi: beyaz siluet (telefon yalnızca saydamlığı kullanır). Başlatıcı simgesindeki ev:
+     baca, iki pencere, hafif aralık kapı (kanat dolu, aralık boş). Ölçüler 0..100 iç alanda, 24'e sığdırılmış. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"
-        android:pathData="M3,21h18 M5,21V9l7,-5 7,5v12 M10,21v-5h4v5" />
+    <group android:scaleX="0.24" android:scaleY="0.24">
+        <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
+            android:pathData="M50,16L66,28L66,20L76,20L76,35.5L90,46L80,46L80,84L20,84L20,46L10,46Z M42,60H58V84H42Z M27,54H37V64H27Z M63,54H73V64H63Z" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M42,60L52.3,62L52.3,84L42,84Z" />
+    </group>
 </vector>

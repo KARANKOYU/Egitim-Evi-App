@@ -1,6 +1,5 @@
 package org.egitimevi.aile;
 
-import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -9,7 +8,6 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -101,16 +99,11 @@ public class GirisSayfasi extends Sayfa {
     private View marka() {
         LinearLayout m = Arayuz.dikey(e);
         m.setGravity(Gravity.CENTER_HORIZONTAL);
-        FrameLayout kare = new FrameLayout(e);
-        GradientDrawable z = new GradientDrawable();
-        z.setCornerRadius(Tema.dp(e, 20));
-        z.setColor(Tema.renk(e, R.color.ana));
-        kare.setBackground(z);
+        /* Başlatıcı simgesi ve sitedeki simgeyle aynı çizim (bacalı ev, aralık kapı). */
         ImageView i = new ImageView(e);
-        i.setImageResource(R.drawable.ik_okul);
-        i.setImageTintList(android.content.res.ColorStateList.valueOf(Tema.renk(e, R.color.ustune_yazi)));
-        kare.addView(i, new FrameLayout.LayoutParams(Tema.dp(e, 38), Tema.dp(e, 38), Gravity.CENTER));
-        m.addView(kare, new LinearLayout.LayoutParams(Tema.dp(e, 72), Tema.dp(e, 72)));
+        i.setImageResource(R.drawable.simge_marka);
+        i.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);   // altındaki "Eğitim Evi" yazısı okunur
+        m.addView(i, new LinearLayout.LayoutParams(Tema.dp(e, 72), Tema.dp(e, 72)));
         TextView ad = Arayuz.baslik(e, "Eğitim Evi");
         ad.setTextSize(32);
         ad.setGravity(Gravity.CENTER);

@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Başlatıcı simgesinin ön yüzü: bacalı beyaz ev, kapısı hafif aralık, içeriden sarı ışık sızıyor
-     ("kapımız herkese açık"). Ölçüler sitedeki simgeyle birebir (eğitim evi/araclar/simge-uret.js,
-     0..100'lük iç alan); ev ortadaki 60 dp'ye oturur, telefonun daire maskesi (66 dp) evi kesmez. -->
+<!-- Giriş ekranındaki marka: sitedeki simgenin (public/simge.svg) aynısı, yuvarlak köşeli kırmızı kare içinde ev.
+     Ölçüler eğitim evi/araclar/simge-uret.js ile birebir; açık ve koyu temada aynı görünür. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="108dp" android:height="108dp"
-    android:viewportWidth="108" android:viewportHeight="108">
-    <group android:translateX="24" android:translateY="24" android:scaleX="0.6" android:scaleY="0.6">
-        <!-- Kapı aralığındaki ışık: duvarın arkasında, kapıdan biraz taşkın (birleşim yerinde çizgi kalmasın) -->
+    android:width="72dp" android:height="72dp"
+    android:viewportWidth="192" android:viewportHeight="192">
+    <path android:pathData="M42.24,0H149.76A42.24,42.24 0,0 1,192 42.24V149.76A42.24,42.24 0,0 1,149.76 192H42.24A42.24,42.24 0,0 1,0 149.76V42.24A42.24,42.24 0,0 1,42.24 0Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="0" android:endX="0" android:endY="192"
+                android:startColor="#FFD62839" android:endColor="#FFA51D2C" android:tileMode="clamp" />
+        </aapt:attr>
+    </path>
+    <group android:translateX="18" android:translateY="18" android:scaleX="1.56" android:scaleY="1.56">
         <path android:fillColor="#FFFFD35A" android:pathData="M41.5,59.5H58.5V84H41.5Z" />
-        <!-- Ev: çatı, baca ve gövde tek dış çizgi; kapı ve pencereler delik -->
         <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
             android:pathData="M50,16L66,28L66,20L76,20L76,35.5L90,46L80,46L80,84L20,84L20,46L10,46Z M42,60H58V84H42Z M27,54H37V64H27Z M63,54H73V64H63Z" />
-        <!-- Zemine düşen ışık -->
         <path android:pathData="M52.3,84L58,84L68,96L50.5,96Z">
             <aapt:attr name="android:fillColor">
                 <gradient android:type="linear" android:startX="0" android:startY="84" android:endX="0" android:endY="96"
                     android:startColor="#BFFFD35A" android:endColor="#00FFD35A" android:tileMode="clamp" />
             </aapt:attr>
         </path>
-        <!-- Aralık duran kapı kanadı ve kulbu -->
         <path android:fillColor="#FFA51D2C" android:pathData="M42,60L52.3,62L52.3,84L42,84Z" />
         <path android:fillColor="#FFFFD35A" android:pathData="M49.3,73.5a1,1 0,1 0,2 0a1,1 0,1 0,-2 0Z" />
     </group>
