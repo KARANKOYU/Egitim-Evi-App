@@ -33,7 +33,7 @@ public class KvkkSayfasi extends Sayfa {
 
         LinearLayout kart = Arayuz.kart(e);
         String[][] maddeler = {
-            { "Veri sorumlusu", "Bu sistemi kullanan okuldur. Eğitim Evi bir yazılımdır; veriler okulun sunucusunda durur." },
+            { "Veri sorumlusu", "Bu sistemi kullanan okuldur. Veriler Eğitim Evi'nin sunucusunda durur; her okulun verisi ayrıdır ve yalnız o okulun yetkilileri erişir." },
             { "Ne işlenir", "Ad, kullanıcı adı, e-posta ve telefon; öğrencide okul kayıtları (ödev, not, devamsızlık, servis)." },
             { "Kim görür", "Herkes yetkisi kadar: öğrenci kendini, veli kendi çocuğunu, öğretmen ders verdiği sınıfları." },
             { "Paylaşım", "Veriler reklam, analiz ya da satış için hiçbir üçüncü tarafa aktarılmaz." },
