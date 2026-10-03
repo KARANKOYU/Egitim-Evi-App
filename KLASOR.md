@@ -80,75 +80,13 @@ bilgisayarda git'in `core.autocrlf=true` ayarı çalışma kopyasında onu CRLF'
 
 ### `README.md`
 
-GitHub'daki depo sayfasının ön yüzü: uygulamanın ne işe yaradığı, dosya tablosu, istenen izinler ve derleme komutları
-(`./gradlew assembleDebug`, `assembleRelease`, `bundleRelease` ve çıktıların yolları). **Eskidi** (`commit 5`'te yazıldı,
-`commit 6`'da uygulama kökten değişti ama README değişmedi). Bugünkü koda göre yanlış olanlar:
-
-- "Uygulamanın içinde Eğitim Evi sitesi açılır" ve tablodaki `AnaEkran.java` = "Site (WebView)" satırı: uygulama artık
-  yereldir, siteyi içinde açmaz, ekranlarını kendisi çizer ([TANITIM.md](TANITIM.md)).
-- Tablodaki `Kopru.java` (siteyle köprü) `commit 6`'da silindi. Ekranların sınıfları (`GirisSayfasi`, `AyarlarSayfasi`
-  …) tabloda hiç yok.
-- "Servisçi seferi başlatınca konum gönderilir": seferi başlatan köprü kalktı; bugün `SeferServisi`'ni başlatan bir ekran
-  yok ([app/src/main/java/org/egitimevi/aile/SeferServisi.md](app/src/main/java/org/egitimevi/aile/SeferServisi.md)).
-- "Dosya seçme ve indirme", "Evimi işaretle için konum izni": bunlar WebView dönemindeydi, bugün yok.
-- "Deneme paketi ilk açılışta sunucu adresini sorar": o pencere de `commit 6`'da kalktı; bugün uygulamada sunucu adresini
-  seçen bir ekran yok ([app/src/main/java/org/egitimevi/aile/Ayarlar.md](app/src/main/java/org/egitimevi/aile/Ayarlar.md)).
-- "JDK 17 ya da üstü": kod Java 17 hedefiyle derlenir, ama Gradle 8.14.3 çok yeni Java sürümlerinde (ör. 25) çalışmaz; bu
-  projede Gradle JDK 21 ile çalıştırılıyor.
-
-Doğru kalanlar: bildirim yoklaması (15 dakikada bir, okulun servis saatlerinde dakikada bir), çocuğun telefonu ve onun ayrı
-anahtarı, uygulamanın verisinin yedeklenmemesi, en düşük Android 8.0, derleme komutları ve yayın imzasının deponun
-dışından okunması (yerel imza dosyaları, depoya girmez; yoksa yayın paketi imzasız çıkar).
-
-### `.gitignore`
-
-Depoya girmeyecekleri beş grupta sayar (her grubun başında Türkçe yorum var):
-
-1. Derleme çıktıları ve Android Studio dosyaları: `.gradle/`, `build/`, `app/build/`, `captures/`,
-   `.externalNativeBuild/`, `.cxx/`, `.idea/`, `*.iml`, `.vscode/`.
-2. Bilgisayara özel SDK yolu dosyası (Android Studio yazar): yerel, depoya girmez.
-3. Paketler: `*.apk`, `*.aab` — sürümler GitHub Releases'e yüklenir, depoya girmez.
-4. İmza anahtarı ve şifreleri: deponun dışında duran imza klasörünün adı, imza ayar dosyası, anahtar deposu ve sertifika
-   dosyası türleri, `.env` dosyaları. Yorumun dediği gibi "yanlışlıkla buraya kopyalansa bile depoya giremez" (yerel imza
-   dosyaları, depoya girmez).
-5. Günlükler ve geçici dosyalar: `*.log`, `*.tmp`, `*.bak`, `Thumbs.db`, `desktop.ini`, `.DS_Store`.
-
-`.md` belgeler bu listede yok: depoya girerler.
-
-## Kimle konuşur?
-
-- **Gradle** kökten başlar: `gradlew`/`gradlew.bat` → `gradle/wrapper/gradle-wrapper.jar` → Gradle 8.14.3 →
-  `settings.gradle` (`:app` modülü) → kök `build.gradle` (AGP 8.13.0) → [app/KLASOR.md](app/KLASOR.md)'deki
-  `app/build.gradle`. `gradle.properties` Gradle sürecinin ayarıdır.
-- **Git** `.gitignore`'u okur.
-- **GitHub** `README.md`'yi depo sayfasında gösterir. Sitenin kılavuzu (site deposunda `belge/KILAVUZ.md`, "Eğitim Evi
-  telefon uygulaması") bu depoya bağlantı verir.
-- **Site sunucusu** bu klasördeki dosyaları okumaz; yalnız bu deponun GitHub Releases sayfasındaki sürümleri okur (site
-  deposunda `sunucu/uygulama-surum.js`, indirme sayfası `/indir/indir.html`).
-
-## Nasıl çalışır (adım adım)?
-
-Bir deneme paketi derlemesinde kök dosyaların sırası (komutu bu belge yazılırken çalıştırmadım; derleme
-[TANITIM.md](TANITIM.md)'de ayrıntılı):
-
-```
-JAVA_HOME=<JDK 21> ./gradlew --offline assembleDebug lintDebug
-  gradlew ─► java -jar gradle/wrapper/gradle-wrapper.jar
-     jar ─► gradle-wrapper.properties: gradle-8.14.3-all.zip (GRADLE_USER_HOME/wrapper/dists'te yoksa indirir;
-            --offline'da indiremez, önceden inmiş olmalı)
-  Gradle 8.14.3 ─► gradle.properties (bellek, UTF-8)
-              ─► settings.gradle: depo kuralı, include ':app'
-              ─► build.gradle (kök): AGP 8.13.0
-              ─► app/build.gradle: derle, paketle, lint
-  çıktı ─► app/build/outputs/apk/debug/app-debug.apk ; lint raporu app/build/reports/ altında
-```
-
-`.gitignore` sayesinde `app/build/` ve inen paketler `git status`'ta görünmez.
+GitHub'daki depo sayfasının ön yüzü. 3 Ekim 2026'da bugünkü yerel (native) uygulamaya göre yeniden yazıldı: kısaca ne olduğu
+ve kimin kullandığı, ekranlar tablosu, telefona özgü işler (bildirim yoklaması, sefer servisi, çocuğun telefonu), oturum ve
+anahtarlar, kullanılan sunucu uçları (site belgelerine adla), her Java dosyasının belgesine bağlantılı dosya tablosu, izinler,
+derleme (JDK 21) ve en sonda "Telif ve kullanım" (tüm hakları saklıdır). Ayrıntılar için [TANITIM.md](TANITIM.md).
 
 ## Dikkat!
 
-- **README eskidi** (yukarıdaki liste). Bir sonraki sürümde yeniden yazılmalı; o güne kadar doğru bilgi
-  [TANITIM.md](TANITIM.md)'de.
 - **`--offline` ilk derlemede çalışmaz.** Gradle dağıtımı, Android eklentisi ve araçları bir kez internetle inmiş olmalı;
   sonra `--offline` hiç ağa çıkmadan derler.
 - **Java sürümü:** Gradle'ı JDK 21 ile çalıştır (`JAVA_HOME`). Bilgisayardaki varsayılan Java daha yeniyse Gradle açılmaz.
@@ -195,7 +133,7 @@ JAVA_HOME=<JDK 21> ./gradlew --offline assembleDebug lintDebug
     izinler ve deneme paketinin sunucu adresi sorması yazıldı.
   - `3875db7 commit 4`: README'de `Api.java` satırı "yalnızca https (http yalnızca deneme paketinde, yerel ağdaki sunucuya)"
     oldu; izinlerde pil için "Kısıtlamasız" seçimi ve verinin buluta yedeklenmemesi yazıldı.
-- Bilinen açıklar: README'nin ve kök `build.gradle` yorumunun eskimesi (yukarıda). Kod değiştirilmedi.
+- Bilinen açıklar: kök `build.gradle` yorumunun eskimesi (yukarıda). README 3 Ekim 2026'da yeniden yazıldı. Kod değiştirilmedi.
 - Planlı işlerden bu klasörü etkileyecekler: "Android yerel uygulama (bütün roller) + doğrulayıcı + apk/aab + sürüm" işinin
   sürüm adımı README'yi yeniden yazar ve `assembleRelease` + `bundleRelease` ile paket çıkarır; aynı işin "uygulama kendini
   güncellesin" eki GitHub ve Play Store paketleri için ayrı bir yapı bayrağı getirecek.

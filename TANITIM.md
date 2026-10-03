@@ -55,7 +55,7 @@ Eğitim Evi'nin müdür, öğretmen, veli, öğrenci ve servisçi için tek Andr
   bunu açıkça söyler ("Bu sürümde rolüne özel ekranlar hazırlanıyor"); Ayarlar'daki "Siteyi aç" uygulamada olmayan işler için
   siteyi tarayıcıda açar.
 
-Kodun tamamı 32 Java sınıfı, yaklaşık 4.200 satır.
+Kodun tamamı 32 Java sınıfı, yaklaşık 5.000 satır (boş olmayan yaklaşık 3.800).
 
 ## 2. Depo nasıl dizilmiş?
 
@@ -63,7 +63,7 @@ Kodun tamamı 32 Java sınıfı, yaklaşık 4.200 satır.
 Egitim-Evi-App/
 ├─ build.gradle, settings.gradle, gradle.properties   Gradle proje tanımı              → KLASOR.md
 ├─ gradlew, gradlew.bat, gradle/wrapper/              Gradle sarmalayıcısı (8.14.3)    → gradle/wrapper/KLASOR.md
-├─ README.md (eskidi, bkz. 11), .gitignore
+├─ README.md (depo ön sayfası; 3 Ekim 2026'da bugünkü koda göre yeniden yazıldı), .gitignore
 ├─ TANITIM.md                                         bu dosya
 ├─ araclar/simgeleri-uret.js                          sitenin simgelerini çevirir      → araclar/simgeleri-uret.md
 └─ app/                                               tek modül; build.gradle          → app/KLASOR.md
@@ -441,8 +441,8 @@ yapmaz (planlı, 14. bölüm).
 
 Belgeleme sırasında koda bakılarak bulunanlar; hiçbiri için kod değiştirilmedi. Ayrıntıları ilgili `.md`'lerde.
 
-- **Eski yazılar:** `README.md` ve manifestin baş yorumu WebView dönemini anlatıyor ([KLASOR.md](KLASOR.md),
-  [app/src/main/KLASOR.md](app/src/main/KLASOR.md)); kök `build.gradle`'ın yorumu uygulamayı hâlâ "çocuğun telefonunda
+- **Eski yazılar:** manifestin baş yorumu WebView dönemini anlatıyor ([app/src/main/KLASOR.md](app/src/main/KLASOR.md);
+  `README.md` 3 Ekim 2026'da yeniden yazıldı); kök `build.gradle`'ın yorumu uygulamayı hâlâ "çocuğun telefonunda
   çalışan küçük uygulama" diye anlatıyor; `UygulamaAyar` yorumu oturumun "WebView'de" kaldığını, `Oturum` yorumu anahtarın 7
   gün geçerli olduğunu söylüyor (uygulama oturumu 30 gün). WebView döneminden kalan başka sınıf yorumları:
   [SeferServisi](app/src/main/java/org/egitimevi/aile/SeferServisi.md) ("site köprüyle (`Kopru.seferBasladi`) bunu açar"),
@@ -525,11 +525,15 @@ Belgeleme sırasında koda bakılarak bulunanlar; hiçbiri için kod değiştiri
   depoda da yok) önce onu oku: son durum, sıradaki işler ve yaşanmış tuzaklar orada.
 - Yoksa: `git --no-pager log --oneline -10` ve `git status`; her `.md`'nin **Son durum** bölümü o dosyada en son neyin
   değiştiğini ve bilinen açık işi yazar.
-- **Git geçmişi kısaca:** `commit 1` (Eğitim Evi Aile, çocuğun telefonu), `commit 2–4` (ekran ve güvenlik düzeltmeleri, yayın
-  imzası, yedek kuralları), `commit 5` (tek uygulamaya geçiş, o gün WebView), `commit 6` (yerel uygulama çekirdeği: bugünkü
-  ekranlar, simgeler, renkler), `commit 7` (girişte `uygulama: true`, 30 günlük oturum), `commit 8` (aydınlatma metni ve SSS
+- **Git geçmişi kısaca** (`commit 1–7` 26 Eylül, `commit 8–11` 27 Eylül, `commit 12` 30 Eylül, `commit 13–18` 3 Ekim 2026):
+  `commit 1` (Eğitim Evi Aile, çocuğun telefonu), `commit 2–4` (ekran ve güvenlik düzeltmeleri, yayın imzası, yedek
+  kuralları), `commit 5` (tek uygulamaya geçiş, o gün WebView), `commit 6` (yerel uygulama çekirdeği: bugünkü ekranlar,
+  simgeler, renkler), `commit 7` (girişte `uygulama: true`, 30 günlük oturum), `commit 8` (aydınlatma metni ve SSS
   adresleri), `commit 9` (`.gitignore`), `commit 10` (16 karakterlik kişi kodu), `commit 11` (logo), `commit 12` (aydınlatma
-  özetinde veri sorumlusu maddesi), `commit 13–15` (Java belgeleri).
+  özetindeki veri sorumlusu maddesinin metni), `commit 13–15` (Java belgeleri: `Ag`'dan `Arayuz`'a, `Ayarlar`'dan
+  `GirisSayfasi`'na, `IzlemeServisi`'nden `KvkkSayfasi`'na), `commit 16` (README'ye "Telif ve kullanım" bölümü), `commit 17`
+  (kalan Java belgeleri: `Oturum`'dan `Zaman`'a), `commit 18` (klasör belgeleri: on `KLASOR.md`; `araclar/simgeleri-uret.md`
+  ve bu dosya), `commit 19` (README bugünkü yerel uygulamaya göre yeniden yazıldı; KLASOR ve TANITIM'deki "README eskidi" notları kalktı).
 - **Planlı işler** (adlarıyla):
   - "Android yerel uygulama (bütün roller) + doğrulayıcı + apk/aab + sürüm": ortak altyapı (harita, dosya yükleme/indirme,
     mesajlar, takvim, hatırlatıcılar, anketler, yemek, bildirim bağlantıları), öğrenci ve veli ekranları, öğretmen ve müdür
